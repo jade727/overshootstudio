@@ -1,0 +1,170 @@
+<?php
+global $APPLICATION, $REQUESTS_TABLE_BODY_TEXT, $REQUESTS_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->REQUEST_CONTROL;
+$walkInControl = $APPLICATION->FUNCTIONS->WALKIN_CONTROL;
+
+$ALL_WALK_IN = $walkInControl->filterRecords(['book_status' => 1, 'status' => 1], true);
+$RECORDS = $control->filterRecords(["status" => 1],true);
+$ACCEPTED = $control->filterRecords(["status" => 2],true);
+$ID = "request_id";
+$BUTTON = -1;
+?>
+<?php include "public/views/pages/portal/account/structures/html_headings.phtml" ?>
+
+<title>Dashboard</title>
+
+<?php include "public/views/pages/portal/account/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+
+        <div class="data-table-main-container pending-requests">
+            <div class="data-table-header">
+                <div class="left">
+                    <div class="text">
+                        <p>PENDING REQUESTS</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-flex table-buttons">
+                        <div class="text-button filled-button table-button show-component" data-name="add-request">
+                            <div class="text">
+                                <span>FILTER DATA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-body">
+                <div class="request-cards-container">
+                    <?php foreach ($RECORDS as $RECORD): ?>
+                        <div class="request-card" data-id="<?= $RECORD->request_id ?>">
+                            <div class="headline">
+                                <h2><?= $RECORD->user->displayName  ?></h2>
+                                <p><?= $RECORD->package->name ?></p>
+                                <span class="sched"><?= $RECORD->schedule ?></span>
+                            </div>
+                            <div class="buttons">
+                                <div class="text-button filled-button decline-button">
+                                    <div class="text">
+                                        <span>Decline</span>
+                                    </div>
+                                </div>
+                                <div class="text-button filled-button accept-button">
+                                    <div class="text">
+                                        <span>Accept</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-table-main-container accepted-requests">
+            <div class="data-table-header">
+                <div class="left">
+                    <div class="text">
+                        <p>ACCEPTED ONLINE BOOKING REQUESTS</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-flex table-buttons">
+                        <div class="text-button filled-button table-button show-component" data-name="add-request">
+                            <div class="text">
+                                <span>FILTER DATA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-body">
+                <div class="request-cards-container">
+                    <?php foreach ($ACCEPTED as $RECORD): ?>
+                        <div class="request-card" data-id="<?= $RECORD->request_id ?>">
+                            <div class="headline">
+                                <h2><?= $RECORD->user->displayName  ?></h2>
+                                <p><?= $RECORD->package->name ?></p>
+                                <span class="sched"><?= $RECORD->schedule ?></span>
+                            </div>
+                            <div class="buttons">
+                                <div class="text-button filled-button cancel-button">
+                                    <div class="text">
+                                        <span>Cancel</span>
+                                    </div>
+                                </div>
+                                <div class="text-button filled-button complete-button">
+                                    <div class="text">
+                                        <span>Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-table-main-container accepted-requests-walkin">
+            <div class="data-table-header">
+                <div class="left">
+                    <div class="text">
+                        <p>WALK IN REQUESTS</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-flex table-buttons">
+
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-body">
+                <div class="request-cards-container">
+                    <?php foreach ($ALL_WALK_IN as $RECORD): ?>
+                        <div class="request-card" data-id="<?= $RECORD->walkin_id ?>">
+                            <div class="headline">
+                                <h2><?= $RECORD->user->displayName  ?></h2>
+                                <p><?= $RECORD->package->name ?></p>
+                                <span class="sched"><?= $RECORD->schedule ?></span>
+                            </div>
+                            <div class="buttons">
+                                <div class="text-button filled-button cancel-button">
+                                    <div class="text">
+                                        <span>Cancel</span>
+                                    </div>
+                                </div>
+                                <div class="text-button filled-button complete-button">
+                                    <div class="text">
+                                        <span>Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include "public/views/pages/portal/account/structures/html_pipes.phtml" ?>
+
+    <script type="module" src="/public/assets/scripts/pages/main/admin/requests.js"></script>
+
+    <?php include "public/views/pages/portal/account/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/portal/account/structures/html_body_closing.phtml" ?>

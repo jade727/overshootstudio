@@ -1,0 +1,59 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->USER_CONTROL;
+$data = json_decode($_POST['data'], true);
+$id = $data['user_id'];
+$user = $control->get($id, true);
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>View Login Account</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Display account sensitive data</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group">
+                        <label for="">
+                            <span>DisplayName</span>
+                        </label>
+                        <div class="error-container">
+                            <input type="text" name="firstname" placeholder="Display Name" value="<?= $user->displayName ?>" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">
+                            <span>Username</span>
+                        </label>
+                        <div class="error-container">
+                            <input type="text" name="username" placeholder="Username" value="<?= $user->username ?>"  disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">
+                            <span>Password</span>
+                        </label>
+                        <div class="error-container">
+                            <input type="text" name="password" placeholder="Password" value="<?= $user->password ?>"  disabled>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

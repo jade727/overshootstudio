@@ -1,0 +1,89 @@
+
+<?php
+global $SESSION, $APPLICATION;
+
+$DATA = $APPLICATION->GetDataForSession();
+
+$CARDS = [
+    [
+        "text" => "Total Requests",
+        "value" => $DATA['all']
+    ],
+    [
+        "text" => "Pending Requests",
+        "value" => $DATA['pending']
+    ],
+    [
+        "text" => "Accepted Requests",
+        "value" => $DATA['accepted']
+    ],
+    [
+        "text" => "Accepted Requests",
+        "value" => $DATA['decline']
+    ],
+    [
+        "text" => "Gallery Images",
+        "value" => 0
+    ],
+
+];
+?>
+<?php include "public/views/pages/portal/account/structures/html_headings.phtml" ?>
+
+<title>Dashboard</title>
+
+<?php include "public/views/pages/portal/account/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+        <div class="main-dashboard">
+            <div class="welcome-container">
+                <div class="headline">
+                    <h1>Welcome Back <?= $SESSION->displayName ?></h1>
+                    <p>Start your day beautifully</p>
+                </div>
+                <div class="button">
+                    <div class="text-button filled-button">
+                        <div class="text">
+                            <span>BOOK NOW</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-cards">
+                <?php foreach ($CARDS as $CARD): ?>
+                    <div class="card">
+                        <div class="icon"></div>
+                        <div class="text">
+                            <p><?=  $CARD['value']; ?></p>
+                            <span><?=  $CARD['text']; ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+
+    </div>
+
+    <?php include "public/views/pages/portal/account/structures/html_pipes.phtml" ?>
+
+    <!--<script type="module" src="/public/assets/scripts/pages/main/dashboard.js"></script>-->
+
+    <?php include "public/views/pages/portal/account/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/portal/account/structures/html_body_closing.phtml" ?>

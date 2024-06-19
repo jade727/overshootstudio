@@ -1,0 +1,267 @@
+<?php
+global $APPLICATION, $USER_TABLE_HEADER_TEXT, $USER_TABLE_BODY_TEXT, $SESSION, $ALL_TABLE_TYPE, $ALL_TABLE_TYPE_VALUES;
+
+$user = $SESSION;
+
+$TYPES = [
+    [
+        "text" => "ACCOUNTS",
+        "value" => 1
+    ],
+    [
+        "text" => "PACKAGES",
+        "value" => 2
+    ],
+    [
+        "text" => "INVENTORY_ITEM",
+        "value" => 3
+    ],
+    [
+        "text" => "WALKIN_REQUEST",
+        "value" => 4
+    ],
+];
+
+
+?>
+<?php include "public/views/pages/portal/account/structures/html_headings.phtml" ?>
+
+<title>Accounts</title>
+
+<?php include "public/views/pages/portal/account/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+
+        <div class="profile-main-container">
+            <div class="profile-head">
+                <div class="profile-cover">
+                </div>
+                <div class="profile-parent">
+                    <div class="profile-picture">
+                        <img src="/<?= $SESSION->photoURL ?>" alt="">
+
+                    </div>
+                    <div class="text">
+                        <h1><?= $SESSION->displayName ?></h1>
+                        <p>Administrator</p>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-body side-bar-picker profile-sidebar" data-id="profile-picker">
+                <div class="drawer-container">
+                    <div class="drawer-items">
+                        <div class="drawer-item side-bar-button active" data-id="profile" data-picker="profile-picker">
+                            <div class="text">
+                                <span>My Profile</span>
+                            </div>
+                        </div>
+
+                        <div class="drawer-item side-bar-button" data-id="security" data-picker="profile-picker">
+                            <div class="text">
+                                <span>Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="most-of-the-content">
+                    <div class="side-bar-content" data-content="profile" data-picker="profile-picker">
+                        <div class="main-contents">
+                            <div class="head">
+                                <h2>Profile</h2>
+
+                                <div class="icon-button edit-profile-btn" data-id="<?= $user->user_id ?>">
+                                    <div class="icon">
+                                        <?= UseIcon('pencil-thin') ?>
+                                    </div>
+                                    <div class="text">
+                                        <span>Edit Profile</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <div class="body-left-right">
+                                    <div class="body-left">
+                                        <form action="" class="form-control">
+                                            <div class="popup-bot">
+                                                <div class="form-group-container flex">
+                                                    <div class="form-group">
+                                                        <label for="">
+                                                            <span>Firstname</span>
+                                                        </label>
+                                                        <div class="error-container">
+                                                            <input type="text" name="firstname" placeholder="Firstname" value="<?= $user->firstname ?>" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="">
+                                                            <span>Lastname</span>
+                                                        </label>
+                                                        <div class="error-container">
+                                                            <input type="text" name="lastname" placeholder="Lastname"  value="<?= $user->lastname ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group-container flex">
+                                                    <div class="form-group">
+                                                        <label for="">
+                                                            <span>Username</span>
+                                                        </label>
+                                                        <div class="error-container">
+                                                            <input type="text" name="username" placeholder="Username"  value="<?= $user->username ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">
+                                                        <span>Email Address</span>
+                                                    </label>
+                                                    <div class="error-container">
+                                                        <input type="text" name="email_address" placeholder="Email Address" value="<?= $user->email_address ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">
+                                                        <span>Mobile</span>
+                                                    </label>
+                                                    <div class="error-container">
+                                                        <input type="text" name="mobile" placeholder="Mobile Number"  value="<?= $user->mobile ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">
+                                                        <span>Gender</span>
+                                                    </label>
+                                                    <div class="error-container">
+                                                        <input type="text" value="<?= ["Male", "Female"][$user->gender] ?>" readonly>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="body-right">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-bar-content" data-content="security" data-picker="profile-picker">
+                        <div class="main-contents">
+                            <div class="head">
+                                <h2>Security</h2>
+                            </div>
+                            <div class="body">
+                                <div class="body-left-right side-bar-picker security-sidebar one-eight"  data-id="security-picker">
+                                    <div class="body-left">
+                                        <div class="main-all-buttons-container">
+                                            <div class="icon-button side-bar-button" data-id="change_password" data-picker="security-picker">
+                                                <div class="icon"></div>
+                                                <div class="text">
+                                                    <span>Change Password</span>
+                                                </div>
+                                            </div>
+                                            <div class="icon-button side-bar-button" data-id="recycler_bin" data-picker="security-picker">
+                                                <div class="icon"></div>
+                                                <div class="text">
+                                                    <span>Recycler Bin</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="body-right">
+                                        <div class="side-bar-content" data-content="change_password" data-picker="security-picker">
+                                            <div class="centered-content">
+                                                <form action="" class="form-control change_password_form">
+                                                    <div class="popup-bot">
+                                                        <div class="form-group-container flex">
+                                                            <div class="form-group">
+                                                                <label for="">
+                                                                    <span>Old Password</span>
+                                                                </label>
+                                                                <div class="error-container">
+                                                                    <input type="password" name="old_password" placeholder="Old Password"  >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group-container flex">
+                                                            <div class="form-group">
+                                                                <label for="">
+                                                                    <span>New Password</span>
+                                                                </label>
+                                                                <div class="error-container">
+                                                                    <input type="password" name="new_password" placeholder="New Password"   >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="popup-footer">
+                                                        <div class="form-group-container submit-group right-side">
+                                                            <div class="form-group">
+                                                                <input type="submit" value="Change Password">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="side-bar-content" data-content="recycler_bin" data-picker="security-picker">
+                                            <div class="centered-content">
+                                                <form action="" class="form-control recycler_bin_form">
+                                                    <div class="form-group-container flex">
+                                                        <div class="form-group">
+                                                            <label for="">
+                                                                <span>Recycle Bin of</span>
+                                                            </label>
+                                                            <div class="error-container">
+                                                                <?= CreateComboBox("table_type", "Recycle Bin of", $TYPES, false, null) ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="popup-footer">
+                                                        <div class="form-group-container submit-group right-side">
+                                                            <div class="form-group">
+                                                                <input type="submit" value="View Recycle Bin">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <?php include "public/views/pages/portal/account/structures/html_pipes.phtml" ?>
+
+    <script type="module" src="/public/assets/scripts/pages/main/admin/profile.js"></script>
+
+    <?php include "public/views/pages/portal/account/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/portal/account/structures/html_body_closing.phtml" ?>

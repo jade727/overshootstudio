@@ -1,0 +1,41 @@
+<?php
+global $SESSION;
+?>
+<div class="right-header">
+    <div class="flex-container">
+        <div class="left">
+            <div class="text-image">
+<!--                --><?//= UseImage("images/logo/logo.png", true) ?>
+            </div>
+            <div class="text-logo">
+
+            </div>
+        </div>
+        <div class="right">
+            <div class="buttons">
+                <div class="nav-button notif">
+                    <div class="icon">
+                        <?= UseIcon("bell-thin") ?>
+                    </div>
+                </div>
+
+                <div class="nav-button profile">
+                    <div class="icon">
+                        <?= UseIcon("caret-down-thin") ?>
+                    </div>
+                    <div class="content"></div>
+                </div>
+
+                <div class="nav-button long">
+                    <div class="icon">
+                        <img src="/<?= $SESSION->photoURL ?>" alt="">
+<!--                        --><?php //= UseImage("img/img1.jpg", true) ?>
+                    </div>
+                    <div class="text">
+                        <p><?= $SESSION->displayName ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

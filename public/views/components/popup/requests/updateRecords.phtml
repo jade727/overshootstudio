@@ -1,0 +1,11 @@
+<?php
+global $APPLICATION, $PACKAGES_TABLE_BODY_TEXT, $PACKAGES_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ID = "package_id";
+$BUTTON = -1;
+?>
+
+<?= CreateTable($PACKAGES_TABLE_HEADER_TEXT, $PACKAGES_TABLE_BODY_TEXT, $RECORDS, $ID, $BUTTON) ?>
+

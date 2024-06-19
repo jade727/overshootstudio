@@ -1,0 +1,121 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Walk In Request</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Enter required fields</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Firstname</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="firstname" placeholder="First Name" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">
+                                <span>Lastname</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="lastname" placeholder="Last Name" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Email</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="email" name="email_address" placeholder="Email Address" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Package</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("package_id", "Package", ObjectToCombo($control->getAllRecords(false), "name", "package_id")) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Schedule</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="datetime-local" name="schedule" placeholder="Schedule" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Package Price</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="price" placeholder="Package Price" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Down Payment Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="down_payment" placeholder="Down Payment" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Description</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="description" id="" cols="30" rows="10" placeholder="Note (optional)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Confirm">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

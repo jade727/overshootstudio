@@ -1,0 +1,179 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->INVENTORY_CONTROL;
+
+$colors = $control->getAlRecordsWithDistinctColumn('color');
+$sizes = $control->getAlRecordsWithDistinctColumn('size');
+$categories = $control->getAlRecordsWithDistinctColumn('category');
+
+
+$ALL_ITEM_STATUS = [
+    [
+        "text" => "Normal",
+        "value" => ItemStatus::NORMAL->value
+    ],
+    [
+        "text" => "Damaged",
+        "value" => ItemStatus::DAMAGED->value
+    ],
+    [
+        "text" => "Borrowed",
+        "value" => ItemStatus::BORROWED->value
+    ],
+    [
+        "text" => "Lost",
+        "value" => ItemStatus::LOST->value
+    ],
+];
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Add New Item</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Create new item</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Item Name</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="name" placeholder="Name" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">
+                                <span>Category</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("category", "Category", $categories, false) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Stocks</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="number" name="stocks" placeholder="Stocks" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">
+                                <span>Size (Optional)</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("size", "Size", $sizes, false) ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">
+                                <span>Color (Optional)</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("color", "Color", $colors, false, null, true) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Description</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="description" id="" cols="30" rows="10" placeholder="Enter product description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">
+                            <span>Item Status</span>
+                        </label>
+                        <div class="error-container">
+                            <?= CreateComboBox("item_status", "Item Status", $ALL_ITEM_STATUS, false) ?>
+                        </div>
+                    </div>
+
+                    <div class="status-additional hide-component" style="margin-left: 20px">
+                        <div class="form-group-container">
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Person Involved</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="person_involved" placeholder="Person Involved" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Quantity Involved</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="quantity_involved" placeholder="Quantity Involved" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Date Happened</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="date" name="date_involved" placeholder="Date Happened" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Status Description</span>
+                                </label>
+                                <div class="error-container">
+                                    <textarea name="status_description" id="" cols="30" rows="10" placeholder="Describe what happen"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Image (Optional)</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="file" name="image" placeholder="Image" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group filled-green">
+                            <input type="submit" value="Confirm">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

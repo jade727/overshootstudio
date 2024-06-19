@@ -1,0 +1,130 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->PAYMENT_CONTROL;
+$packageControl = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+
+$data = json_decode($_POST['data'], true);
+
+$packageID = $data['packageID'];
+$id = $data['id'];
+
+$payment = $control->get($id, true);
+$package = $packageControl->get($packageID, true);
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>View Payment</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Payment Infomation</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container">
+                        <div class="image-float-center">
+                            <div class="image">
+                                <?= UseImage('img/gcash_1.jpg', true) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Gcash Number</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="number" placeholder="Schedule" value="09516430723" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Total Package Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="amount" placeholder="Package Price" min="500" value="<?= $package->price ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Reservation Fee ( To Pay )</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="topay" placeholder="Reservation Fee" min="500" value="<?= $package->price / 2 ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Gcash Number</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="sender_number" placeholder="Gcash Number" readonly value="<?= $payment->sender_number ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Sent Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="sent_amount" placeholder="Sent Amount" readonly value="<?= $payment->sent_amount ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Reference Number</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="reference" placeholder="Reference Number"  readonly value="<?= $payment->reference ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Image Proof / Screenshot</span>
+                            </label>
+                            <div class="error-container">
+                                <div class="preview-image">
+                                    <img src="/<?= $payment->image ?>" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Note</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="note" id="" cols="30" rows="10" placeholder="Note (Optional)" readonly><?= $payment->note ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

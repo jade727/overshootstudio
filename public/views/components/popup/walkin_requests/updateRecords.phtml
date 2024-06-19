@@ -1,0 +1,12 @@
+<?php
+global $APPLICATION, $WALKIN_TABLE_HEADER_TEXT, $WALKIN_TABLE_BODY_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->WALKIN_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ID = "walkin_id";
+$BUTTON = -1;
+?>
+
+<?= CreateTable($WALKIN_TABLE_HEADER_TEXT, $WALKIN_TABLE_BODY_TEXT, $RECORDS, $ID, $BUTTON) ?>
+
+

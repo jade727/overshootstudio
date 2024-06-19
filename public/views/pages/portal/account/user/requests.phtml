@@ -1,0 +1,114 @@
+<?php
+global $APPLICATION, $REQUESTS_TABLE_BODY_TEXT, $REQUESTS_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->REQUEST_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ALLACCEPTED = $control->filterRecords(['status' => 2], true);
+$ID = "request_id";
+$BUTTON = -1;
+?>
+<?php include "public/views/pages/portal/account/structures/html_headings.phtml" ?>
+
+<title>Dashboard</title>
+
+<?php include "public/views/pages/portal/account/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+
+        <div class="data-table-main-container">
+            <div class="data-table-header">
+                <div class="left">
+                    <div class="text">
+                        <p>MY REQUESTS</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-flex table-buttons">
+                        <div class="text-button filled-button table-button show-component" data-name="view-request">
+                            <div class="text">
+                                <span>VIEW</span>
+                            </div>
+                        </div>
+                        <div class="text-button filled-button table-button show-component" data-name="cancel-request">
+                            <div class="text">
+                                <span>CANCEL</span>
+                            </div>
+                        </div>
+                        <div class="text-button filled-button table-button show-component" data-name="add-request">
+                            <div class="text">
+                                <span>BOOK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-body">
+                <?= CreateTable($REQUESTS_TABLE_HEADER_TEXT, $REQUESTS_TABLE_BODY_TEXT, $RECORDS, $ID, $BUTTON) ?>
+            </div>
+
+            <div class="data-table-header">
+                <div class="left">
+                    <div class="text">
+                        <p>UPCOMING SCHEDULES</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-flex table-buttons">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table-body">
+                <div class="schedule-cards-container">
+                    <?php foreach ($ALLACCEPTED as $REQUEST): ?>
+                        <div class="schedule-card">
+                            <div class="left">
+                                <div class="image">
+                                    <img src="/<?= $REQUEST->package->image ?>" alt="">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="main">
+                                    <div class="text">
+                                        <p><?= $REQUEST->package->name ?></p>
+                                        <span><?= $REQUEST->schedule; ?></span>
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="text-button ">
+                                            <div class="text">
+                                                <span>Cancel</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php  endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <?php include "public/views/pages/portal/account/structures/html_pipes.phtml" ?>
+
+    <script type="module" src="/public/assets/scripts/pages/main/user/requests.js"></script>
+
+    <?php include "public/views/pages/portal/account/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/portal/account/structures/html_body_closing.phtml" ?>

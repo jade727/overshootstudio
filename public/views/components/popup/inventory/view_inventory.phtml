@@ -1,0 +1,49 @@
+<?php
+global $APPLICATION, $ALL_ITEM_STATUS, $INVENTORY_REPORT_TABLE_HEADER_TEXT, $INVENTORY_REPORT_TABLE_BODY_TEXT;
+global $ALL_ITEM_STATUS;
+
+$control = $APPLICATION->FUNCTIONS->INVENTORY_REPORT_CONTROL;
+
+
+$data = json_decode($_POST['data'], true);
+$id = $data['id'];
+$item = $control->get($id, true);
+
+$RECORDS = $item->getItems();
+$REPORT_ID = $control->getTablePrimaryID();
+
+$RECORDS = array_map(function($record) use ($ALL_ITEM_STATUS) {
+
+    $record['item_status'] = $ALL_ITEM_STATUS[$record['item_status'] - 1];
+
+    return $record;
+}, $RECORDS);
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-table go-large">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>View Inventory</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Inventory #</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="data-table-body">
+                        <?= CreateTable($INVENTORY_REPORT_TABLE_HEADER_TEXT, $INVENTORY_REPORT_TABLE_BODY_TEXT, $RECORDS, $REPORT_ID, false, true) ?>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

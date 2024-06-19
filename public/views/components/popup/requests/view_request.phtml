@@ -1,0 +1,75 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->REQUEST_CONTROL;
+
+$data = json_decode($_POST['data'], true);
+$id = $data['id'];
+
+$request = $control->get($id, true);
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Book Schedule</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Enter required fields</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Package</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" readonly value="<?= $request->package->name; ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Schedule</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="datetime" name="schedule" placeholder="Schedule" readonly value="<?= $request->schedule ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Note</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="note" id="" cols="30" rows="10" placeholder="Note (optional)"  readonly ><?= $request->note ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <div class="text-button view-payment" data-id="<?= $request->payment_id ?>">
+                                <div class="text">
+                                    <span>VIEW PAYMENT INFORMATION</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

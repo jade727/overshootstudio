@@ -1,0 +1,208 @@
+
+<?php
+global $APPLICATION, $SESSION;
+
+$DATA = $APPLICATION->GetAllData();
+
+$USERS = $DATA['users'];
+$REQUESTS = $DATA['requests'];
+$WALKIN = $DATA['walkin'];
+$TODAY = $DATA['today'];
+
+$OTHER_CARDS = [
+    [
+        "text" => "All Users",
+        "value" => $USERS['all']
+    ],
+    [
+        "text" => "Inventory Items",
+        "value" => $USERS['items']
+    ]
+];
+
+$CARDS = [
+    [
+        "text" => "Total Requests",
+        "value" => $REQUESTS['all']
+    ],
+    [
+        "text" => "Pending Requests",
+        "value" => $REQUESTS['pending']
+    ],
+    [
+        "text" => "Accepted Requests",
+        "value" => $REQUESTS['accepted']
+    ],
+    [
+        "text" => "Declined Requests",
+        "value" => $REQUESTS['decline']
+    ],
+];
+
+$WALKIN_CARDS = [
+    [
+        "text" => "Total Requests",
+        "value" => $WALKIN['all']
+    ],
+    [
+        "text" => "Pending Requests",
+        "value" => $WALKIN['pending']
+    ],
+    [
+        "text" => "Accepted Requests",
+        "value" => $WALKIN['accepted']
+    ],
+    [
+        "text" => "Declined Requests",
+        "value" => $WALKIN['decline']
+    ],
+];
+
+$TODAYCARDS = [
+    [
+        "text" => "Total Requests",
+        "value" => $TODAY['all']
+    ],
+    [
+        "text" => "Pending Requests",
+        "value" => $TODAY['pending']
+    ],
+    [
+        "text" => "Accepted Requests",
+        "value" => $TODAY['accepted']
+    ],
+    [
+        "text" => "Declined Requests",
+        "value" => $TODAY['decline']
+    ],
+];
+?>
+<?php include "public/views/pages/portal/account/structures/html_headings.phtml" ?>
+
+<title>Dashboard</title>
+
+<?php include "public/views/pages/portal/account/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+        <div class="main-dashboard">
+            <div class="welcome-container">
+                <div class="headline">
+                    <h1>Welcome Back <?= $SESSION->displayName ?></h1>
+                    <p>Start your day beautifully</p>
+                </div>
+            </div>
+
+            <div class="card-main-container">
+                <div class="title">
+                    <h2>
+                        USERS & INVENTORY
+                    </h2>
+                </div>
+                <div class="dashboard-cards">
+                    <?php foreach ($OTHER_CARDS as $CARD): ?>
+                        <div class="card">
+                            <div class="icon"></div>
+                            <div class="text">
+                                <p><?=  $CARD['value']; ?></p>
+                                <span><?=  $CARD['text']; ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="card-main-container">
+                <div class="title">
+                    <h2>
+                        ALL ONLINE REQUESTS
+                    </h2>
+                </div>
+                <div class="dashboard-cards">
+                    <?php foreach ($CARDS as $CARD): ?>
+                        <div class="card">
+                            <div class="icon"></div>
+                            <div class="text">
+                                <p><?=  $CARD['value']; ?></p>
+                                <span><?=  $CARD['text']; ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="card-main-container">
+                <div class="title">
+                    <h2>
+                        TODAY REQUESTS
+                    </h2>
+                </div>
+                <div class="dashboard-cards">
+                    <?php foreach ($TODAYCARDS as $CARD): ?>
+                        <div class="card">
+                            <div class="icon"></div>
+                            <div class="text">
+                                <p><?=  $CARD['value']; ?></p>
+                                <span><?=  $CARD['text']; ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="card-main-container">
+                <div class="title">
+                    <h2>
+                        WALKIN TODAY
+                    </h2>
+                </div>
+                <div class="dashboard-cards">
+                    <?php foreach ($WALKIN_CARDS as $CARD): ?>
+                        <div class="card">
+                            <div class="icon"></div>
+                            <div class="text">
+                                <p><?=  $CARD['value']; ?></p>
+                                <span><?=  $CARD['text']; ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-left-right-container">
+            <div class="content">
+                <div class="dashboard-left">
+                    <div class="text-container">
+                        <p>Today Sales</p>
+                        <h3>PHP 30,000</h3>
+                    </div>
+                </div>
+                <div class="dashboard-right">
+                    <div class="text-container">
+                        <p>This Month Sales</p>
+                        <h3>PHP 30,000</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <?php include "public/views/pages/portal/account/structures/html_pipes.phtml" ?>
+
+    <!--<script type="module" src="/public/assets/scripts/pages/main/dashboard.js"></script>-->
+
+    <?php include "public/views/pages/portal/account/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/portal/account/structures/html_body_closing.phtml" ?>

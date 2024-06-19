@@ -1,0 +1,121 @@
+.profile-main-container
+  margin: 40px
+  //background: #ffffff
+  //box-shadow: $component_boxshadow
+  //width: 100%
+  .profile-head
+    width: 100%
+    min-height: 300px
+    border-radius: 6px
+    background: #ffffff
+    padding: 20px
+    position: relative
+    border-top-left-radius: 25px
+    border-top-right-radius: 25px
+    box-shadow: $component_boxshadow
+    .profile-cover
+      width: 100%
+      height: 100%
+    .profile-parent
+      position: absolute
+      bottom: 40px
+      left: 40px
+      display: flex
+
+      .profile-picture
+        width: 150px
+        height: 150px
+        border-radius: 50%
+        background: #ffffff
+        box-shadow: $global_boxshadow
+        img
+          width: 100%
+          height: 100%
+          border-radius: 50%
+
+      .text
+        padding: 20px
+        margin-left: 20px
+        h1
+          font-size: 40px
+        p
+          font-size: 24px
+  .profile-body
+    .drawer-container
+      width: 100%
+      height: 60px
+      background: #ffffff
+      box-shadow: $component_boxshadow
+
+.drawer-container
+  display: flex
+  justify-content: space-between
+
+  .drawer-items
+    display: flex
+    align-items: center
+    .drawer-item
+      padding: 14px 16px
+      cursor: pointer
+      border-radius: 4px
+      margin: 5px
+      user-select: none
+      &:hover
+        background: #ebeeee
+.most-of-the-content
+  padding: 10px 0
+  .main-contents
+    border-radius: 15px
+    background: #ffffff
+    box-shadow: $component_boxshadow
+    min-height: 300px
+    .head
+      padding: 20px
+      display: flex
+      justify-content: space-between
+      align-items: center
+    .body
+      padding: 20px
+      width: 100%
+      height: 100%
+      .body-left-right
+        display: flex
+        width: 100%
+        height: 100%
+        &.one-eight
+          .body-left
+            width: 30% !important
+          .body-right
+            width: 70% !important
+            display: flex
+            justify-content: center
+            align-content: center
+            align-items: center
+            .centered-content
+              width: 500px
+              form
+                width: 100%
+
+
+        .body-left
+          width: 50%
+          height: 100%
+          .form-group-container
+            width: 100%
+            .form-group
+              width: 100%
+
+        .body-right
+          width: 50%
+          height: 100%
+          padding-left: 5%
+
+          .image-preview
+            margin: 10px
+            width: 200px
+            height: 200px
+            border-radius: 6px
+            background: #ebeeee
+            img
+              width: 100%
+              height: 100%

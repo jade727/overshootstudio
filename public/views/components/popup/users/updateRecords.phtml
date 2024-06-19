@@ -1,0 +1,11 @@
+<?php
+global $APPLICATION, $USER_TABLE_HEADER_TEXT, $USER_TABLE_BODY_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->USER_CONTROL;
+$RECORDS = $control->filterRecords(['user_type' => 1], false);
+$ID = "user_id";
+$BUTTON = -1;
+?>
+
+<?= CreateTable($USER_TABLE_HEADER_TEXT, $USER_TABLE_BODY_TEXT, $RECORDS, $ID, $BUTTON) ?>
+

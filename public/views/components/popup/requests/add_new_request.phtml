@@ -1,0 +1,83 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Book Schedule</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Enter required fields</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Package</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("package_id", "Package", ObjectToCombo($control->getAllRecords(false), "name", "package_id")) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Price</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="price" placeholder="Price" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Schedule</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="datetime-local" name="schedule" placeholder="Schedule" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Note</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="note" id="" cols="30" rows="10" placeholder="Note (optional)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Confirm">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<?php
+global $APPLICATION, $PACKAGES_TABLE_BODY_TEXT, $PACKAGES_TABLE_HEADER_TEXT;
+
+$control = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+$RECORDS = $control->getAllRecords(false);
+$ID = "package_id";
+$BUTTON = -1;
+?>
+<?php include "public/views/pages/portal/account/structures/html_headings.phtml" ?>
+
+<title>Dashboard</title>
+
+<?php include "public/views/pages/portal/account/structures/html_heading_closing.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_body_open.phtml" ?>
+
+<?php include "public/views/pages/portal/account/structures/html_opening_parent.phtml" ?>
+
+<div class="left-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_navbar.phtml" ?>
+
+</div>
+
+<div class="right-content">
+
+    <?php include "public/views/pages/portal/account/structures/html_right_heading.phtml" ?>
+
+    <div class="right-body">
+
+        <div class="data-table-main-container">
+            <div class="data-table-header">
+                <div class="left">
+                    <div class="text">
+                        <p>ALL PACKAGES</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-flex table-buttons">
+                        <div class="text-button filled-button table-button show-component" data-name="delete-request">
+                            <div class="text">
+                                <span>REMOVE</span>
+                            </div>
+                        </div>
+                        <div class="text-button filled-button table-button show-component" data-name="edit-request">
+                            <div class="text">
+                                <span>VIEW</span>
+                            </div>
+                        </div>
+                        <div class="text-button filled-button table-button show-component" data-name="add-request">
+                            <div class="text">
+                                <span>ADD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-body">
+                <?= CreateTable($PACKAGES_TABLE_HEADER_TEXT, $PACKAGES_TABLE_BODY_TEXT, $RECORDS, $ID, $BUTTON) ?>
+            </div>
+        </div>
+
+    </div>
+
+    <?php include "public/views/pages/portal/account/structures/html_pipes.phtml" ?>
+
+    <script type="module" src="/public/assets/scripts/pages/main/admin/packages.js"></script>
+
+    <?php include "public/views/pages/portal/account/structures/html_closing_parent.phtml" ?>
+
+    <?php include "public/views/pages/portal/account/structures/html_body_closing.phtml" ?>

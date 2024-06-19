@@ -1,0 +1,171 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->REQUEST_CONTROL;
+$walkInControl = $APPLICATION->FUNCTIONS->WALKIN_CONTROL;
+$data = json_decode($_POST['data'], true);
+
+$id = $data['id'];
+$isWalkIN = $data['isWalkIN'];
+$item = $isWalkIN ? $walkInControl->get($id, true) : $control->get($id, true);
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Payment Section</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Please pay exact amount!</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Total Package Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="amount" placeholder="Package Price" min="500" value="<?= $item->package_price ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Down Payment</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="down_payment" placeholder="Down Payment" min="0" value="<?= $item->down_payment  ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Balance</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="balance" placeholder="Balance" min="0" value="<?= $item->balance  ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Method</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("method", "Payment Method", [['text' => 'CASH', 'value' => 1],['text' => 'GCASH', 'value' => 2]]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="for-cash hide-component">
+                        <div class="form-group-container">
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Cash</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="cash" placeholder="Cash">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Change</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="cash_change" placeholder="Change" min="0" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="for-gcash hide-component">
+                        <div class="form-group-container">
+                            <div class="image-float-center">
+                                <div class="image">
+                                    <?= UseImage('img/gcash_1.jpg', true) ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-container">
+                            <div class="form-group">
+                                <label for="">
+                                    <span>Gcash Number</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="number" placeholder="Gcash Number" value="09516430723" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-container flex">
+                            <div class="form-group tooltip">
+                                <label for="">
+                                    <span>Sender Number</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="sender_number" placeholder="Sender Number"  >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-container flex">
+                            <div class="form-group tooltip">
+                                <label for="">
+                                    <span>Sent Amount</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="sent_amount" placeholder="Sent Amount"  value="<?= $item->package_price - $item->down_payment ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-container flex">
+                            <div class="form-group tooltip">
+                                <label for="">
+                                    <span>Reference Number</span>
+                                </label>
+                                <div class="error-container">
+                                    <input type="text" name="reference" placeholder="Reference Number"  >
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Note</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="note" id="" cols="30" rows="10" placeholder="Note (Optional)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Confirm">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

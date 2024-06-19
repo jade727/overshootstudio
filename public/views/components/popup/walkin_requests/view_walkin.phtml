@@ -1,0 +1,131 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->WALKIN_CONTROL;
+$controlPackage = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+$data = json_decode($_POST['data'], true);
+
+$id = $data['id'];
+
+$walkin = $control->get($id, true);
+
+$capableEditing = $walkin->status == 1;
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Walk In Request</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Enter required fields</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Firstname</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="firstname" placeholder="First Name" value="<?= $walkin->user->firstname ?>" <?= $capableEditing ? '' : 'readonly' ?> >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">
+                                <span>Lastname</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="lastname" placeholder="Last Name" value="<?=  $walkin->user->lastname; ?>" <?= $capableEditing ? '' : 'readonly' ?> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Package</span>
+                            </label>
+                            <div class="error-container">
+                                <?= CreateComboBox("package_id", "Package", ObjectToCombo($controlPackage->getAllRecords(false), "name", "package_id"), false, ['text' => $walkin->package->name, 'value' => $walkin->package->package_id]) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Schedule</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="datetime-local" name="schedule" placeholder="Schedule" value="<?= $walkin->schedule_original ?>" <?= $capableEditing ? '' : 'readonly' ?> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Package Price</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="price" placeholder="Package Price" disabled value="<?= $walkin->package_price ?>" <?= $capableEditing ? '' : 'readonly' ?> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Down Payment Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="down_payment" placeholder="Down Payment" value="<?= $walkin->down_payment ?>" <?= $capableEditing ? '' : 'readonly' ?> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Balance</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="balance" placeholder="Balance" value="<?= $walkin->balance ?>" <?= $capableEditing ? '' : 'readonly' ?> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Description</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="description" id="" cols="30" rows="10" placeholder="Note (optional)" <?= $capableEditing ? '' : 'readonly' ?> ><?= $walkin->description ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php if($capableEditing): ?>
+                    <div class="popup-footer">
+                        <div class="form-group-container submit-group right-side">
+                            <div class="form-group">
+                                <div class="link clear-form">
+                                    <span>Clear</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Confirm">
+                            </div>
+                        </div>
+                    </div>
+                <?php endif ?>
+            </form>
+        </div>
+    </div>
+</div>

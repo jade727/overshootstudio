@@ -1,0 +1,100 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->USER_CONTROL;
+$data = json_decode($_POST['data'], true);
+$id = $data['id'];
+$user = $control->get($id, true);
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>View Account</h1>
+                </div>
+                <div class="paragraph">
+                    <p>View account information</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Firstname</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="firstname" placeholder="Firstname" value="<?= $user->firstname ?>" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">
+                                <span>Lastname</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="lastname" placeholder="Lastname"  value="<?= $user->lastname ?>" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Username</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="username" placeholder="Username"  value="<?= $user->username ?>" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">
+                            <span>Email Address</span>
+                        </label>
+                        <div class="error-container">
+                            <input type="text" name="email_address" placeholder="Email Address" value="<?= $user->email_address ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">
+                            <span>Mobile</span>
+                        </label>
+                        <div class="error-container">
+                            <input type="text" name="mobile" placeholder="Mobile Number"  value="<?= $user->mobile ?>" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">
+                            <span>Gender</span>
+                        </label>
+                        <div class="error-container">
+                            <?= CreateComboBox("gender", "Gender", ["Male", "Female"], false, ["text" => ["Male", "Female"][$user->gender], "value" => $user->gender], true) ?>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save Changes">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

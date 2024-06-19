@@ -1,0 +1,135 @@
+<?php
+global $APPLICATION;
+
+$control = $APPLICATION->FUNCTIONS->PACKAGE_CONTROL;
+$data = json_decode($_POST['data'], true);
+$requestData = $data['requestData'];
+$id = $requestData['package_id'];
+$package = $control->get($id, true);
+
+?>
+<div class="main-popup-container">
+    <div class="popup-background"></div>
+    <div class="popup-content">
+        <div class="main-popup-content">
+            <div class="popup-top">
+                <div class="headline">
+                    <h1>Payment Section</h1>
+                </div>
+                <div class="paragraph">
+                    <p>Please pay exact amount!</p>
+                </div>
+
+                <div class="floating-button">
+                    <div class="close-popup popup-button">
+                        <?= UseIcon('close') ?>
+                    </div>
+                </div>
+            </div>
+            <form action="" class="form-control">
+                <div class="popup-bot">
+                    <div class="form-group-container">
+                        <div class="image-float-center">
+                            <div class="image">
+                                <?= UseImage('img/gcash_1.jpg', true) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <label for="">
+                                <span>Gcash Number</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="number" placeholder="Schedule" value="09516430723" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Total Package Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="amount" placeholder="Package Price" min="500" value="<?= $package->price ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Reservation Fee ( To Pay )</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="topay" placeholder="Reservation Fee" min="500" value="<?= $package->price / 2 ?>" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Gcash Number</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="sender_number" placeholder="Gcash Number"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Sent Amount</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="sent_amount" placeholder="Sent Amount"  value="<?= $package->price / 2 ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Reference Number</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="text" name="reference" placeholder="Reference Number"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Image Proof / Screenshot</span>
+                            </label>
+                            <div class="error-container">
+                                <input type="file" name="image" placeholder="Proof"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-container flex">
+                        <div class="form-group tooltip">
+                            <label for="">
+                                <span>Note</span>
+                            </label>
+                            <div class="error-container">
+                                <textarea name="note" id="" cols="30" rows="10" placeholder="Note (Optional)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="form-group-container submit-group right-side">
+                        <div class="form-group">
+                            <div class="link clear-form">
+                                <span>Clear</span>
+                            </div>
+                        </div>
+                        <div class="form-group filled-green">
+                            <input type="submit" value="Confirm">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

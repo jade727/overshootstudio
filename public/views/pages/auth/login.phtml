@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/public/assets/styles/css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-auth-container">
+        <div class="top">
+            <div class="logo">
+                <?= UseImageWithSize('img/logo.png',100,80, true); ?>
+            </div>
+        </div>
+
+        <div class="bot">
+            <div class="auth-container">
+                <div class="left" style="background-image: url('<?= UseImage('img/im3.jpg')  ?>')">
+                    <div class="background" ></div>
+                    <div class="headline">
+                        <p>We offer self-portrait at <br> it's fitnest quality</p>
+                        <span>and make it as spacious as it can be</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="main-form">
+                        <form action="" class="form-control">
+                            <div class="head">
+                                <h3>Sign In</h3>
+                                <p>Login your account</p>
+                            </div>
+                            <div class="body">
+                                <div class="form-group">
+                                    <label for="">
+                                        <span>Username</span>
+                                    </label>
+                                    <div class="error-container">
+                                        <input type="text" placeholder="Username" name="username">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">
+                                        <span>Password</span>
+                                    </label>
+                                    <div class="error-container">
+                                        <input type="password" placeholder="Password" name="password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <div class="form-group-container flex submit-group">
+                                    <a href="/portal/auth/register" style="text-decoration: none; color: #000000">
+                                        <div class="form-group">
+                                            <div class="text-button">
+                                                <span>REGISTER</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="form-group">
+                                        <input type="submit" value="LOGIN">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="/public/assets/scripts/pages/auth/login.js" type="module"></script>
+
+</html>

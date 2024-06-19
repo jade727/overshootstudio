@@ -1,0 +1,123 @@
+<?php
+global $SESSION;
+
+$USERLINKS = array(
+    [
+        "text" => "Overview",
+        "path" => '/portal/',
+        "icon" => UseIcon("chart-bar-thin")
+    ],
+    [
+        "text" => "My Gallery",
+        "path" => '/portal/gallery',
+        "icon" => UseIcon("image-square-thin")
+    ],
+    [
+        "text" => "My Requests",
+        "path" => '/portal/requests',
+        "icon" => UseIcon("calendar-plus-thin")
+    ],
+);
+
+$ADMINLINKS = array(
+    [
+        "text" => "Overview",
+        "path" => '/portal/',
+        "icon" => UseIcon("chart-bar-thin")
+    ],
+    [
+        "text" => "Packages",
+        "path" => '/portal/packages',
+        "icon" => UseIcon("package-thin")
+    ],
+    [
+        "text" => "Accounts",
+        "path" => '/portal/accounts',
+        "icon" => UseIcon("person-thin")
+    ],
+    [
+        "text" => "Inventory",
+        "path" => '/portal/inventory',
+        "icon" => UseIcon("paint-brush-household-thin")
+    ],
+    [
+        "text" => "Walk In",
+        "path" => '/portal/walkin',
+        "icon" => UseIcon("person-simple-walk-thin")
+    ],
+    [
+        "text" => "Book Requests",
+        "path" => '/portal/requests',
+        "icon" => UseIcon("calendar-plus-thin")
+    ],
+);
+
+$NAVLINKS = $SESSION->isAdmin ? $ADMINLINKS : $USERLINKS;
+
+?>
+<nav class="main-navbar">
+    <div class="nav-header">
+        <div class="logo-container">
+            <div class="logo">
+                <?= UseImageWithSize('img/logo.png', 100, 80, true) ?>
+            </div>
+        </div>
+    </div>
+    <div class="nav-body">
+        <div class="nav-link-items">
+            <?php foreach ($NAVLINKS as $link): ?>
+                <?php
+                if ($this->view_path === "/") {
+                    $match = $this->view_path === $link['path'];
+                } else {
+                    $match = '/' . $this->view_path === $link['path'];
+                }
+                ?>
+                <?php if (isset($link['sub-content'])): ?>
+                    <a>
+                <?php else: ?>
+                    <a href="<?= $link['path'] ?>">
+                <?php endif; ?>
+                    <div class="nav-link <?= $match ? 'active' : '' ?>" data-path="<?= $link['path'] ?>">
+                        <div class="main">
+                            <div class="icon">
+                                    <?= $link['icon'] ?? '' ?>
+                                </div>
+                            <div class="text">
+                                <span>
+                                    <?= $link['text'] ?>
+                                </span>
+                            </div>
+                        </div>
+                        <?php if (isset($link['sub-content'])): ?>
+                            <div class="sub-content" data-path="<?= $link['path'] ?>">
+                                <?php foreach ($link['sub-content'] as $item): ?>
+                                    <?php
+                                        if ($this->view_path === "/") {
+                                            $match = $this->view_path === $item['path'];
+                                        } else {
+                                            $match = '/' . $this->view_path === $item['path'];
+                                        }
+                                    ?>
+                                    <a href="<?= $item['path'] ?>">
+                                        <div class="sub-link <?= $match ? 'active' : '' ?>">
+                                            <div class="icon">
+                                                <?= $item['icon'] ?? '' ?>
+                                            </div>
+                                            <div class="text">
+                                            <span>
+                                                <?= $item['text'] ?>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endif ?>
+                    </div>
+                </a>
+            <?php
+            endforeach; ?>
+        </div>
+    </div>
+</nav>
